@@ -1,0 +1,4 @@
+API para utilizar no sistema:
+Cloud Translation API
+Descrição: faz a tradução do texto inserido no blog.
+Link: https://translate.googleapis.com/$discovery/rest?version=v3

@@ -1,4 +1,4 @@
-package com.blog.application.model;
+package com.blog.application.models;
 
 import jakarta.persistence.*;
 
@@ -18,7 +18,7 @@ public class PostModel implements Serializable {
     @Column(name = "id_post")
     private UUID id;
     private String titulo;
-    private String noticia;
+    private String post;
 
     public PostModel() {
     }
@@ -26,7 +26,7 @@ public class PostModel implements Serializable {
     public PostModel(UUID id, String titulo, String noticia) {
         this.id = id;
         this.titulo = titulo;
-        this.noticia = noticia;
+        this.post = noticia;
     }
 
     public UUID getId() {
@@ -45,12 +45,12 @@ public class PostModel implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getNoticia() {
-        return noticia;
+    public String getPost() {
+        return post;
     }
 
-    public void setNoticia(String noticia) {
-        this.noticia = noticia;
+    public void setPost(String post) {
+        this.post = post;
     }
 
     @Override

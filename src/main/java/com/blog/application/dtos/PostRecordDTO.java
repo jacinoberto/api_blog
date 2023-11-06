@@ -1,4 +1,6 @@
 package com.blog.application.dtos;
 
-public record PostRecordDTO(String titulo, String post){
+import jakarta.validation.constraints.NotBlank;
+
+public record PostRecordDTO(@NotBlank String titulo, @NotBlank String post){
 }

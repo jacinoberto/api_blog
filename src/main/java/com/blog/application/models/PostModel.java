@@ -18,6 +18,7 @@ public class PostModel implements Serializable {
     @Column(name = "id_post")
     private UUID id;
     private String titulo;
+    @Lob @Basic(fetch = FetchType.LAZY)
     private String post;
 
     public PostModel() {

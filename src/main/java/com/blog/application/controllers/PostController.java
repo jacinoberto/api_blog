@@ -44,10 +44,13 @@ public class PostController {
     }
 
 
-    @PutMapping("post/{id}")
-    public ResponseEntity<PostModel> teste(@PathVariable UUID id) {
-        postRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+    @PutMapping("update/product/{id}") //funcao atualizar
+    public ResponseEntity<PostModel> updateProduct (@RequestBody @Valid PostRecordDTO ProductRecordDTO) {
+
+        PostModel post = new PostModel();
+        BeanUtils.copyProperties(ProductRecordDTO, post);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
     }
 
 

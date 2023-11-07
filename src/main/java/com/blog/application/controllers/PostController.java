@@ -10,9 +10,12 @@ import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.swing.text.html.Option;
 
 @RestController
 public class PostController {
@@ -33,5 +36,21 @@ public class PostController {
     	
     	return ResponseEntity.ok().body(posts);
     }
+
+    @DeleteMapping("post/{id}")
+    public ResponseEntity<PostModel> deletePost(@PathVariable UUID id) {
+        postRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @PutMapping("post/{id}")
+    public ResponseEntity<PostModel> teste(@PathVariable UUID id) {
+        postRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 
 }

@@ -44,6 +44,13 @@ public class PostController {
     }
 
 
+    @PutMapping("post/{id}")
+    public ResponseEntity<PostModel> teste(@PathVariable UUID id) {
+        postRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 
 }

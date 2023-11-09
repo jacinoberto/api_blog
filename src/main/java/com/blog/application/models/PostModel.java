@@ -20,6 +20,7 @@ public class PostModel implements Serializable {
     private String titulo;
     @Lob @Basic(fetch = FetchType.LAZY)
     private String post;
+    private String conselho;
 
     public PostModel() {
     }
@@ -52,6 +53,14 @@ public class PostModel implements Serializable {
 
     public void setPost(String post) {
         this.post = post;
+    }
+
+    public String getConselho() {
+        return conselho;
+    }
+
+    public void setConselho(String conselho) {
+        this.conselho = conselho;
     }
 
     @Override

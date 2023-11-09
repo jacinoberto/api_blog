@@ -3,6 +3,7 @@ package com.blog.application.controllers;
 import com.blog.application.dtos.PostRecordDTO;
 import com.blog.application.models.PostModel;
 import com.blog.application.repositories.PostRepository;
+import com.blog.application.service.PostService;
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -20,14 +21,14 @@ public class PostController {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private PostService postService;
 
     @PostMapping(value = "/post/new")
     public ResponseEntity<PostModel> insert(@RequestBody @Valid PostRecordDTO postDTO){
         PostModel post = new PostModel();
-        post.setConselho(api());
+        post.setConselho(postService.api());
         BeanUtils.copyProperties(postDTO, post);
-
-
         return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
     }
     
@@ -52,12 +53,5 @@ public class PostController {
         BeanUtils.copyProperties(ProductRecordDTO, post);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
-    }
-
-    private String api(){
-        String apiUrl = "https://api.adviceslip.com/advice";
-        RestTemplate restTemplate = new RestTemplate();
-        String response = restTemplate.getForObject(apiUrl, String.class);
-        return response;
     }
 }

@@ -10,12 +10,10 @@ import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.Option;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class PostController {
@@ -26,7 +24,10 @@ public class PostController {
     @PostMapping(value = "/post/new")
     public ResponseEntity<PostModel> insert(@RequestBody @Valid PostRecordDTO postDTO){
         PostModel post = new PostModel();
+        post.setConselho(api());
         BeanUtils.copyProperties(postDTO, post);
+
+
         return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
     }
     
@@ -53,7 +54,10 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.CREATED).body(postRepository.save(post));
     }
 
-
-
-
+    private String api(){
+        String apiUrl = "https://api.adviceslip.com/advice";
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.getForObject(apiUrl, String.class);
+        return response;
+    }
 }
